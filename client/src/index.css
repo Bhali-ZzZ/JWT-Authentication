@@ -1,0 +1,17 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+.custom-toast {
+    width: auto !important; /* Adjust this width if necessary */
+    max-width: 100%; /* Ensure it does not exceed container width */
+    white-space: nowrap;
+    overflow: visible;
+    text-overflow: clip;
+    font-size: 1rem; /* Ensure the font size is not too large */
+    display: flex;
+    align-items: center; /* Vertically center the text and icon */
+  }
+
+  

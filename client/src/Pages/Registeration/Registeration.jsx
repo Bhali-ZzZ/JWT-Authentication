@@ -1,10 +1,13 @@
-import React, { useState } from 'react';
+import React, { useState  } from 'react';
 import './Registeration.css';
 import axios from "axios"
 import { useStore } from '../Context/Context';
 import { toast } from 'react-toastify';
+import { useNavigate } from 'react-router-dom';
 
 const Registration = () => {
+
+  const navigate = useNavigate()
 
   const {url} = useStore()
 
@@ -34,6 +37,7 @@ const Registration = () => {
           email :"",
           password : ""
       })
+      navigate("/login")
       toast.success('Registered', {
         // position: toast.POSITION.TOP_CENTER,
         className: 'custom-toast', // Apply custom class

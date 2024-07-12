@@ -5,7 +5,7 @@ import axios from 'axios';
 import { toast } from 'react-toastify';
 
 const Home = () => {
-  const { auth , url } = useStore();
+  const { auth, url } = useStore();
   const [formData, setFormData] = useState({
     email: '',
     message: ''
@@ -30,28 +30,24 @@ const Home = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const response = await axios.post(`${url}/api/user/message`,formData)
     try {
-      if(response.data.success){
-        setFormData({
-          message:""
-        })
+      const response = await axios.post(`${url}/api/user/message`, formData);
+      if (response.data.success) {
+        setFormData((prevData) => ({
+          ...prevData,
+          message: ""
+        }));
         toast.success('Message sent!', {
-          // position: toast.POSITION.TOP_CENTER,
           className: 'custom-toast', // Apply custom class
         });
-  
-      }
-      else{
+      } else {
         toast.error('Error', {
-          // position: toast.POSITION.TOP_CENTER,
           className: 'custom-toast', // Apply custom class
         });
       }
     } catch (error) {
-      console.log("Error")
+      console.error("Error");
       toast.error('Error', {
-        // position: toast.POSITION.TOP_CENTER,
         className: 'custom-toast', // Apply custom class
       });
     }
@@ -61,10 +57,13 @@ const Home = () => {
     <div className='home'>
       {auth.token ? (
         <>
+         <div className='home-top'>
+         <div className='heading'>
           <h1>Hi {auth.user.username}</h1>
           <p>WHAT DO YOU WANT TO SAY?</p>
+          </div>
           <form onSubmit={handleSubmit}>
-            <div>
+            <div className="form-group">
               <label htmlFor="email">Email:</label><br/>
               <input
                 type="email"
@@ -75,7 +74,7 @@ const Home = () => {
                 required
               />
             </div>
-            <div>
+            <div className="form-group">
               <label htmlFor="message">Message:</label><br/>
               <textarea
                 id="message"
@@ -87,10 +86,11 @@ const Home = () => {
             </div>
             <button type="submit">Submit</button>
           </form>
+         </div>
         </>
       ) : (
         <>
-          <h4>Hi, I'M "M BILAL SAJID". Please, Login to connect with me!</h4>
+          <h4>Hi, I'M "M BILAL SAJID".<br/><br/> Please, Login to connect with me!</h4>
         </>
       )}
     </div>

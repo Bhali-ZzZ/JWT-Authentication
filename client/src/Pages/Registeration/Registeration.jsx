@@ -45,7 +45,7 @@ const Registration = () => {
       }
     } catch (error) {
       console.log(error)
-      toast.error('Error', {
+      toast.error('Password should be at least 8 characters', {
         // position: toast.POSITION.TOP_CENTER,
         className: 'custom-toast', // Apply custom class
       });

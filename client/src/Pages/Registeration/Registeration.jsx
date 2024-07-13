@@ -43,6 +43,12 @@ const Registration = () => {
         className: 'custom-toast', // Apply custom class
       });
       }
+      else{
+        toast.error('User already Registered or password lenght < 8', {
+          // position: toast.POSITION.TOP_CENTER,
+          className: 'custom-toast', // Apply custom class
+        });
+      }
     } catch (error) {
       console.log(error)
       toast.error('Password should be at least 8 characters', {

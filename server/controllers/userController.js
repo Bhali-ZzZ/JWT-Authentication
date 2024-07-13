@@ -1,6 +1,6 @@
 import validator from "validator";
 import userModel from "../models/userModel.js";
-import bcryptjs from "bcryptjs"
+import bcrypt from 'bcryptjs';
 import jwt from "jsonwebtoken";
 
 const registerUsers = async (req, res) => {
@@ -20,8 +20,8 @@ const registerUsers = async (req, res) => {
             return res.json({ success: false, message: "Password must be at least 8 characters" });
         }
         
-        const salt = await bcryptjs.genSalt(10);
-        const hashedPassword = await bcryptjs.hash(password, salt);
+        const salt = await bcrypt.genSalt(10);
+        const hashedPassword = await bcrypt.hash(password, salt);
         
         const newUser = new userModel({
             username: username,
@@ -48,7 +48,7 @@ const loginUser = async (req, res) => {
             return res.json({ success: false, message: "User not found" });
         }
         
-        const isPasswordValid = await bcryptjs.compare(password, user.password);
+        const isPasswordValid = await bcrypt.compare(password, user.password);
         
         if (!isPasswordValid) {
             return res.json({ success: false, message: "Incorrect password" });

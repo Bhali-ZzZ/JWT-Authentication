@@ -4,7 +4,7 @@ import axios from 'axios';
 const StoreContext = createContext();
 
 export const StoreProvider = ({ children }) => {
-  const url = "https://jwtregistration.onrender.com";
+  const url = "http://localhost:4000";
 
   const [auth, setAuth] = useState({
     token: localStorage.getItem('token') || '',
